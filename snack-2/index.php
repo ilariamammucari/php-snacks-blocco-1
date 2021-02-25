@@ -13,21 +13,20 @@ $accesso = '';
 $suggerimento = '';
 $semaforo = false;
 
-if ( !$semaforo ) {
-    if ( strlen($nome) < 3 ){
-        $accesso = 'Accesso negato';
-        $suggerimento = 'Inserisci un nome più lungo di tre caratteri';
-    } elseif ( !strpos($mail, '@') || !strpos($mail, '.') ) {
-        $accesso = 'Accesso negato';
-        $suggerimento = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
-    } elseif ( !is_numeric($eta) ) {
-        $accesso = 'Accesso negato';
-        $suggerimento = 'Inserisci la tua età';
-    } else {
-        $semaforo = true;
-        $accesso = 'Accesso consentito';
-    }
+
+if ( strlen($nome) < 3 ){
+    $accesso = 'Accesso negato';
+    $suggerimento = 'Inserisci un nome più lungo di tre caratteri';
+} elseif ( !strpos($mail, '@') || !strpos($mail, '.') ) {
+    $accesso = 'Accesso negato';
+    $suggerimento = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
+} elseif ( !is_numeric($eta) ) {
+    $accesso = 'Accesso negato';
+    $suggerimento = 'Inserisci la tua età';
+} else {
+    $accesso = 'Accesso consentito';
 }
+
 
 ?>
 

@@ -11,8 +11,6 @@ $eta = $_GET['eta'];
 
 $accesso = '';
 $suggerimento = '';
-$semaforo = false;
-
 
 if ( strlen($nome) < 3 ){
     $accesso = 'Accesso negato';

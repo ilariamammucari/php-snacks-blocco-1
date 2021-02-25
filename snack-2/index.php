@@ -11,20 +11,24 @@ $eta = $_GET['eta'];
 
 $accesso = '';
 $suggerimento = '';
+$semaforo = false;
 
-if ( strlen($nome) < 3 ){
-    $suggerimento = 'Inserisci un nome più lungo di tre caratteri';
-} elseif ( !strpos($mail, '@') || !strpos($mail, '.') ) {
-    $suggerimento = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
-} elseif ( !is_numeric($eta) ) {
-    $suggerimento = 'Inserisci la tua età';
+if ( !$semaforo ) {
+    if ( strlen($nome) < 3 ){
+        $accesso = 'Accesso negato';
+        $suggerimento = 'Inserisci un nome più lungo di tre caratteri';
+    } elseif ( !strpos($mail, '@') || !strpos($mail, '.') ) {
+        $accesso = 'Accesso negato';
+        $suggerimento = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
+    } elseif ( !is_numeric($eta) ) {
+        $accesso = 'Accesso negato';
+        $suggerimento = 'Inserisci la tua età';
+    } else {
+        $semaforo = true;
+        $accesso = 'Accesso consentito';
+    }
 }
 
-if ( strlen($nome) < 3 || !strpos($mail, '@') || !strpos($mail, '.') || !is_numeric($eta) ){
-    $accesso = 'Accesso negato';
-} else {
-    $accesso = 'Accesso riuscito';
-}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +40,7 @@ if ( strlen($nome) < 3 || !strpos($mail, '@') || !strpos($mail, '.') || !is_nume
     <title>Snack-2</title>
 </head>
 <body>
-    <div><?php echo $suggerimento ?></div>
     <div><?php echo $accesso ?></div>
+    <div><?php echo $suggerimento ?></div>
 </body>
 </html>

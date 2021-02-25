@@ -9,15 +9,35 @@ $nome = $_GET['nome'];
 $mail = $_GET['mail'];
 $eta = $_GET['eta'];
 
-$accesso = 'Inserisci un nome con più di 3 lettere';
+$accesso = '';
+$suggerimento = 'Inserisci un nome più lungo di tre caratteri';
 if ( strlen($nome) > 3 ){
-    $accesso = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
+    $suggerimento = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
     if ( strpos($mail, '@') && strpos($mail, '.') ){
-        $accesso = 'Inserisci la tua età';
+        $suggerimento = 'Inserisci la tua età';
         if ( is_numeric($eta) ) {
-            $accesso = 'Accesso riuscito';
+            $suggerimento = 'Complimenti';
         }
     }
 }
-echo $accesso;
+
+if ( strlen($nome) < 3 || !strpos($mail, '@') || !strpos($mail, '.') || !is_numeric($eta) ){
+    $accesso = 'Accesso negato';
+} else {
+    $accesso = 'Accesso riuscito';
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snack-2</title>
+</head>
+<body>
+    <div><?php echo $suggerimento ?></div>
+    <div><?php echo $accesso ?></div>
+</body>
+</html>

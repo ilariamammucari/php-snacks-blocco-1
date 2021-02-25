@@ -10,15 +10,14 @@ $mail = $_GET['mail'];
 $eta = $_GET['eta'];
 
 $accesso = '';
-$suggerimento = 'Inserisci un nome più lungo di tre caratteri';
-if ( strlen($nome) > 3 ){
+$suggerimento = '';
+
+if ( strlen($nome) < 3 ){
+    $suggerimento = 'Inserisci un nome più lungo di tre caratteri';
+} elseif ( !strpos($mail, '@') || !strpos($mail, '.') ) {
     $suggerimento = 'Inserisci un\'email corretta. Che contenga un "@" e un punto "."';
-    if ( strpos($mail, '@') && strpos($mail, '.') ){
-        $suggerimento = 'Inserisci la tua età';
-        if ( is_numeric($eta) ) {
-            $suggerimento = 'Complimenti';
-        }
-    }
+} elseif ( !is_numeric($eta) ) {
+    $suggerimento = 'Inserisci la tua età';
 }
 
 if ( strlen($nome) < 3 || !strpos($mail, '@') || !strpos($mail, '.') || !is_numeric($eta) ){
